@@ -32,11 +32,6 @@ export const BurgerConstructor: FC = () => {
       constructorItems.bun._id
     ];
     dispatch(createOrder(ingredientIds));
-
-    dispatch(fetchFeed());
-    dispatch(fetchProfileOrders());
-
-    dispatch(clearConstructor());
   };
 
   const closeOrderModal = () => {

@@ -1,6 +1,8 @@
 import { orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
+import { useDispatch } from '../store';
+import { clearConstructor, fetchFeed, fetchProfileOrders } from '@slices';
 
 interface IOrderState {
   orderRequest: boolean;
@@ -16,8 +18,14 @@ const initialState: IOrderState = {
 
 export const createOrder = createAsyncThunk(
   'order/create',
-  async (ingredients: string[]) => {
+  async (ingredients: string[], thunkAPI) => {
+    const { dispatch } = thunkAPI;
     const response = await orderBurgerApi(ingredients);
+
+    dispatch(fetchFeed());
+    dispatch(fetchProfileOrders());
+    dispatch(clearConstructor());
+
     return response.order;
   }
 );

@@ -1,15 +1,6 @@
 import { getFeedsApi, getOrderByNumberApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createOrder } from '@slices';
-import { TOrder } from '@utils-types';
-
-interface IFeedState {
-  orders: TOrder[];
-  total: number;
-  totalToday: number;
-  isLoading: boolean;
-  error: string | null;
-}
+import { IFeedState } from '@utils-types';
 
 const initialState: IFeedState = {
   orders: [],

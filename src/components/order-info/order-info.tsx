@@ -4,11 +4,7 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import { useParams } from 'react-router-dom';
-import {
-  clearOrderDetails,
-  fetchIngredients,
-  fetchOrderByNumber
-} from '@slices';
+import { clearOrderDetails, fetchOrderByNumber } from '@slices';
 
 export const OrderInfo: FC = () => {
   const { number } = useParams<{ number: string }>();
@@ -25,10 +21,6 @@ export const OrderInfo: FC = () => {
       dispatch(clearOrderDetails());
     };
   }, [number, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
 
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;

@@ -26,12 +26,27 @@ import {
   OrderInfo,
   ProtectedRoute
 } from '@components';
+import { useEffect } from 'react';
+import { useDispatch } from '../../services/store';
+import { fetchIngredients, fetchUser, hydrateAuth } from '@slices';
+import { getCookie } from '../../utils/cookie';
 
 const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { number } = useParams<{ number: string }>();
+  const dispatch = useDispatch();
   const background = location.state?.background;
+
+  useEffect(() => {
+    dispatch(fetchIngredients());
+
+    dispatch(hydrateAuth());
+
+    const token = getCookie('accessToken');
+    if (token) {
+      dispatch(fetchUser());
+    }
+  }, [dispatch]);
 
   const onClouse = () => {
     if (background) {

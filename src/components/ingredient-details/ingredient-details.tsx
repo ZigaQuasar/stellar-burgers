@@ -1,17 +1,11 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Preloader } from '../ui/preloader';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from '../../services/store';
-import { fetchIngredients } from '@slices';
+import { useSelector } from '../../services/store';
 
 export const IngredientDetails: FC = () => {
   const { id } = useParams<{ id: string }>();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
 
   const ingredientData = useSelector((state) =>
     state.ingredients.ingredients.find((ingredient) => ingredient._id === id)

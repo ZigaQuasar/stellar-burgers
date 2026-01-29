@@ -32,8 +32,12 @@ export const Register: FC = () => {
       await dispatch(fetchUser());
 
       navigate('/', { replace: true });
-    } catch (err: any) {
-      setError(err.message || 'Ошибка при регистрации');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Произошла неизвестная ошибка при регистрации');
+      }
     }
   };
 

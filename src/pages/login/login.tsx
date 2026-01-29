@@ -29,8 +29,12 @@ export const Login: FC = () => {
       dispatch(fetchUser());
 
       navigate(from, { replace: true });
-    } catch (err: any) {
-      setError(err.message || 'Неверный email или пароль');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message || 'Неверный email или пароль');
+      } else {
+        setError('Произошла неизвестная ошибка');
+      }
     }
   };
 
