@@ -1,16 +1,16 @@
-import store  from './store'
+import { rootReducer } from './store'
 
 describe('rootReducer', () => {
   it('Тестирование инициализации rootReducer', () => {
-    const state = store.getState();
+    const initialState = rootReducer(undefined, {type: 'UNKNOWN_ACTION'});
 
-    expect(state).toHaveProperty('burgerConstructor');
-    expect(state).toHaveProperty('ingredients');
-    expect(state).toHaveProperty('order');
-    expect(state).toHaveProperty('user');
-    expect(state).toHaveProperty('feed');
-    expect(state).toHaveProperty('orderDetails');
-    expect(state).toHaveProperty('profileOrders');
+    expect(initialState).toHaveProperty('burgerConstructor');
+    expect(initialState).toHaveProperty('ingredients');
+    expect(initialState).toHaveProperty('order');
+    expect(initialState).toHaveProperty('user');
+    expect(initialState).toHaveProperty('feed');
+    expect(initialState).toHaveProperty('orderDetails');
+    expect(initialState).toHaveProperty('profileOrders');
   });
 });
 

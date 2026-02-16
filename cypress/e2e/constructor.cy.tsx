@@ -25,9 +25,17 @@ describe('Проверяем работу BurgerConstructor', () => {
   });
 
   it('Тестирование открытия и закрытия модального окна ингредиента', () => {
+    cy.get('[data-cy="ingredient-bun"]').first().within(() => {
+      cy.get('p.text_type_main-default').invoke('text').as('ingredientName');
+    });
+
     cy.get('[data-cy="ingredient-bun"]').first().click()
 
     cy.url().should('include', '/ingredients/');
+
+    cy.get('@ingredientName').then((name) => {
+      cy.contains(name.trim()).should('be.visible');
+    });
 
     cy.get('[data-cy="modal-close"]').click();
     cy.url().should('eq', `${Cypress.config().baseUrl}/`);
