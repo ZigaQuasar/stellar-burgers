@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import ingredientsReducer from './slices/ingredientsSlice';
-import constructorReducer from './slices/constructorSlice';
-import orderReducer from './slices/orderSlice';
-import feedReducer from './slices/feedSlice';
-import orderDetailsReducer from './slices/orderDetailsSlice';
-import userReducer from './slices/userSlice';
-import ProfileOrdersReducer from './slices/profileOrdersSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import ingredientsReducer from './slices/ingredientsSlice/ingredientsSlice';
+import constructorReducer from './slices/constructorSlice/constructorSlice';
+import orderReducer from './slices/orderSlice/orderSlice';
+import feedReducer from './slices/feedSlice/feedSlice';
+import orderDetailsReducer from './slices/orderDetailsSlice/orderDetailsSlice';
+import userReducer from './slices/userSlice/userSlice';
+import ProfileOrdersReducer from './slices/profileOrdersSlice/profileOrdersSlice';
 
 import {
   TypedUseSelectorHook,
@@ -13,7 +13,7 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-const rootReducer = {
+export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
   burgerConstructor: constructorReducer,
   order: orderReducer,
@@ -21,7 +21,7 @@ const rootReducer = {
   orderDetails: orderDetailsReducer,
   user: userReducer,
   profileOrders: ProfileOrdersReducer
-};
+});
 
 const store = configureStore({
   reducer: rootReducer,

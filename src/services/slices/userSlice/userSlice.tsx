@@ -1,9 +1,9 @@
 import { getUserApi, logoutApi, TRegisterData, updateUserApi } from '@api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
-import { getCookie } from '../../utils/cookie';
+import { getCookie } from '../../../utils/cookie';
 
-interface IUserState {
+export interface IUserState {
   user: TUser | null;
   isAuth: boolean;
   isLoading: boolean;
@@ -40,9 +40,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    clearUserError: (state) => {
-      state.error = null;
-    },
     hydrateAuth: (state) => {
       const accessToken = getCookie('accessToken');
       state.isAuth = !!accessToken;
@@ -90,5 +87,5 @@ export const userSlice = createSlice({
   }
 });
 
-export const { clearUserError, hydrateAuth } = userSlice.actions;
+export const { hydrateAuth } = userSlice.actions;
 export default userSlice.reducer;

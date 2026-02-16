@@ -2,7 +2,7 @@ import { getOrdersApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 
-interface IProfileOrdersState {
+export interface IProfileOrdersState {
   orders: TOrder[];
   isLoading: boolean;
   error: string | null;

@@ -12,14 +12,6 @@ const initialState: IFeedState = {
 
 export const fetchFeed = createAsyncThunk('feed/fetch', getFeedsApi);
 
-const fetchOrderByNumber = createAsyncThunk(
-  'order/fetch',
-  async (number: number) => {
-    const response = await getOrderByNumberApi(number);
-    return response.orders[0];
-  }
-);
-
 export const feedSlice = createSlice({
   name: 'feed',
   initialState,
