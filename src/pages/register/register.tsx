@@ -3,7 +3,7 @@ import { useDispatch } from '../../services/store';
 import { useNavigate } from 'react-router-dom';
 import { registerUserApi } from '@api';
 import { setCookie } from '../../utils/cookie';
-import { fetchUser } from '../../services/slices/userSlice';
+import { fetchUser } from '../../services/slices/userSlice/userSlice';
 import { RegisterUI } from '@ui-pages';
 
 export const Register: FC = () => {

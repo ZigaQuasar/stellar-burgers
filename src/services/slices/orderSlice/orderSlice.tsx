@@ -1,10 +1,9 @@
 import { orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
-import { useDispatch } from '../store';
 import { clearConstructor, fetchFeed, fetchProfileOrders } from '@slices';
 
-interface IOrderState {
+export interface IOrderState {
   orderRequest: boolean;
   orderModalData: TOrder | null;
   error: string | null;
